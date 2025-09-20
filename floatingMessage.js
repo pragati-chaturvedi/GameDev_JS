@@ -19,8 +19,10 @@ export class FloatingMessage {
     draw(context) {
         context.font = '20px Creepster';
         context.fillStyle = 'white';
+        context.fillText(this.value, this.x + 2, this.y + 2);
+        context.fillStyle = 'black';
         context.fillText(this.value, this.x, this.y);
-        context.strokeStyle = 'black';
-        context.strokeText(this.value, this.x - 2, this.y - 2);
+        context.strokeStyle = 'white';
+        context.strokeText(this.value, this.x, this.y);
     }
 }
