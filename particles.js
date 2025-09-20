@@ -49,7 +49,6 @@ export class Splash extends Particle {
     }
 
     draw(context) {
-        console.log('draw called for splash effect');
         context.drawImage(this.image, this.x, this.y, this.size, this.size);
     }
 }
