@@ -1,5 +1,6 @@
 import { Sitting, Running, Jumping, Falling, Rolling, Diving, Hit } from './playerState.js';
 import { CollisionAnimation } from './collisionAnimation.js';
+import { FloatingMessage } from './floatingMessage.js';
 export class Player {
     constructor(game) {
         this.game = game;
@@ -19,6 +20,7 @@ export class Player {
         this.frameInterval = 1000 / this.fps;
         this.frameTimer = 0;
         this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game)];
+        this.currentState = null;
     }
 
     draw(context) {
@@ -85,8 +87,10 @@ export class Player {
                     this.currentState === this.states[5]
                 ) {
                     this.game.score++;
+                    this.game.floatingMessages.push(new FloatingMessage('+1', enemy.x, enemy.y, 110, 50));
                 } else {
                     this.setState(6, 0);
+                    this.game.score -= 5;
                     this.game.lives--;
                     if (this.game.lives <= 0) this.game.gameOver = true;
                 }
