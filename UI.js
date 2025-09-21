@@ -9,7 +9,6 @@ export class UI {
         this.powerGridWidth = 100;
     }
 
-
     draw(context) {
         context.save();
         // shadow effect on text
@@ -38,6 +37,22 @@ export class UI {
         context.fillStyle = '#e0cb2bff';
         context.fillRect(this.game.width - this.powerGridWidth - 20, 70, this.game.powerMode, 20);
         context.fillStyle = 'black';
+
+        // ===== How to play overlay BEFORE game starts =====
+        if (!this.game.gameStarted && !this.game.gameOver) {
+            context.textAlign = 'center';
+            context.font = this.fontSize * 2 + 'px ' + this.fontFamily;
+            context.fillText('How to play', this.game.width * 0.5, this.game.height * 0.25);
+            context.font = this.fontSize * 0.7 + 'px ' + this.fontFamily;
+            context.fillText('⬅ ➡ : Move', this.game.width * 0.5, this.game.height * 0.25 + 30);
+            context.fillText('⬆ : Jump', this.game.width * 0.5, this.game.height * 0.25 + 60);
+            context.fillText('⬇ : Sit (ground) / Dive (air)', this.game.width * 0.5, this.game.height * 0.25 + 90);
+            context.fillText('Shift (hold): Roll / Power Mode', this.game.width * 0.5, this.game.height * 0.25 + 120);
+            context.fillText('Collect points by hitting enemies while rolling/diving.', this.game.width * 0.5, this.game.height * 0.25 + 150);
+            context.fillText('Avoid hits or you lose lives.', this.game.width * 0.5, this.game.height * 0.25 + 180);
+            context.fillText("Try to score your best in 30 seconds !", this.game.width * 0.5, this.game.height * 0.25 + 210);
+            context.fillText("Press any key or Touch screen to start", this.game.width * 0.5, this.game.height * 0.25 + 240);
+        }
 
         // game over message
         if (this.game.gameOver) {

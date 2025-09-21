@@ -51,3 +51,7 @@ p {
 #lives {
     display: none;
 }
+
+.hidden {
+    display: none;
+}

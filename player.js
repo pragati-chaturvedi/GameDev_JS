@@ -106,7 +106,9 @@ export class Player {
                     this.game.floatingMessages.push(new FloatingMessage('+1', enemy.x, enemy.y, 110, 50));
                 } else {
                     this.setState(6, 0);
-                    this.game.score -= 5;
+                    if (this.game.score <= 0) this.game.score = 0;
+                    else if (this.game.score - 5 < 0) this.game.score = 0;
+                    else this.game.score -= 5
                     this.game.lives--;
                     this.game.floatingMessages.push(new FloatingMessage('-5', enemy.x, enemy.y, 110, 50));
                     if (this.game.lives <= 0) this.game.gameOver = true;

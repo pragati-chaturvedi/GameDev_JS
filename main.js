@@ -35,7 +35,7 @@ window.addEventListener('load', function () {
             this.fontColor = 'black';
             this.time = 0;
             this.maxTime = 30000;
-            this.winningScore = 40;
+            this.winningScore = 10;
             this.gameOver = false;
             this.lives = 3;
             this.player.currentState = this.player.states[0];
@@ -43,7 +43,9 @@ window.addEventListener('load', function () {
             this.sound = new Audio();
             this.sound.src = 'assets/sound/game_music.wav';
             this.sound.loop = true;
+            this.gameStarted = false;
         }
+
         restart() {
             this.player.reset();
             this.enemies = [];
@@ -85,9 +87,8 @@ window.addEventListener('load', function () {
         }
 
         update(deltaTime) {
-            this.sound.play().catch(() => { });
-
             // Time based game over logic
+            if (!this.gameStarted) return;
             this.time += deltaTime;
             if (this.time > this.maxTime) this.gameOver = true;
             if (this.player.currentState !== this.player.states[4] && this.powerMode < 100) this.powerMode += 0.3;
@@ -142,6 +143,8 @@ window.addEventListener('load', function () {
     }
 
     const game = new Game(canvas.width, canvas.height);
+
+
     // console.log(game);
     let lastTime = 0;
     const maxFPS = 60;
@@ -159,5 +162,17 @@ window.addEventListener('load', function () {
         }
         if (!game.gameOver) requestAnimationFrame(animate);
     }
+
     animate(0);
+
+    function startGame() {
+        if (!game.gameStarted) {
+            game.gameStarted = true;
+            game.sound.play().catch(() => { });
+        }
+    }
+    window.addEventListener('keydown', startGame, { once: true });
+    // Optional: touch/click start
+    window.addEventListener('touchstart', startGame, { once: true });
+    window.addEventListener('click', startGame, { once: true });
 });
