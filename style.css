@@ -22,6 +22,10 @@ h1 {
     z-index: 1;
 }
 
+p {
+    text-align: center;
+}
+
 #canvas {
     border: 5px solid black;
     position: absolute;
