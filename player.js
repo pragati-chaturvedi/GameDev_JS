@@ -21,6 +21,8 @@ export class Player {
         this.frameTimer = 0;
         this.states = [new Sitting(this.game), new Running(this.game), new Jumping(this.game), new Falling(this.game), new Rolling(this.game), new Diving(this.game), new Hit(this.game)];
         this.currentState = null;
+        this.sound = new Audio();
+        this.sound.src = 'assets/sound/enemy_hit.wav';
     }
 
     draw(context) {
@@ -58,9 +60,15 @@ export class Player {
         } else {
             this.frameTimer += deltaTime;
         }
-
+        // power mode
+        console.log(this.currentState);
+        console.log(this.game.powerMode);
+        if (this.game.powerMode > 0 && this.currentState === this.states[4]) this.game.powerMode -= 1;
+        if (this.game.powerMode <= 0 && this.currentState === this.states[4]) {
+            if (this.onGround()) this.setState(1, 1);
+            else this.setState(3, 1);
+        }
     }
-
     onGround() {
         return this.y >= this.game.height - this.height - this.game.groundMargin;
     }
@@ -80,6 +88,7 @@ export class Player {
                 enemy.y + enemy.height > this.y
             ) {
                 //collision detected
+                this.sound.play();
                 enemy.markedForDeletion = true;
                 this.game.collisions.push(new CollisionAnimation(this.game, enemy.x + enemy.width * 0.5, enemy.y + enemy.height * 0.5));
                 if (

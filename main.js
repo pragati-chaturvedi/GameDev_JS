@@ -31,6 +31,8 @@ window.addEventListener('load', function () {
             this.enemyInterval = 1000;
             this.debug = false;
             this.score = 0;
+            this.powerMode = 100;
+            this.powerResetTime = 5000;
             this.fontColor = 'black';
             this.time = 0;
             this.maxTime = 30000;
@@ -39,9 +41,13 @@ window.addEventListener('load', function () {
             this.lives = 3;
             this.player.currentState = this.player.states[0];
             this.player.currentState.enter();
+            this.sound = new Audio();
+            this.sound.src = 'assets/sound/game_music.wav';
+            this.sound.loop = true;
         }
 
         draw(context) {
+            this.sound.play();
             this.background.draw(context);
             this.player.draw(context);
             this.enemies.forEach(enemy => {
@@ -63,6 +69,7 @@ window.addEventListener('load', function () {
             // Time based game over logic
             this.time += deltaTime;
             if (this.time > this.maxTime) this.gameOver = true;
+            if (this.player.currentState !== this.player.states[4] && this.powerMode < 100) this.powerMode += 0.3;
 
             this.background.update();
             this.player.update(this.input.keys, deltaTime);

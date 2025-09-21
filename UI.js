@@ -4,6 +4,9 @@ export class UI {
         this.fontSize = 30;
         this.fontFamily = 'Creepster';
         this.livesImage = document.getElementById('lives');
+        this.livesImageWidth = 25;
+        this.livesImageHeight = 25;
+        this.powerGridWidth = 100;
     }
 
     draw(context) {
@@ -23,8 +26,18 @@ export class UI {
         context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 20, 80);
         // lives
         for (let i = 0; i < this.game.lives; i++) {
-            context.drawImage(this.livesImage, 25 * i + 20, 95, 25, 25);
+            const imagePos = (this.game.width - this.livesImageWidth - 20) - this.livesImageWidth * i;
+            context.drawImage(this.livesImage, imagePos, 25, this.livesImageWidth, this.livesImageWidth);
         }
+
+        // power mode grid
+        context.lineWidth = 2;
+        context.strokeStyle = 'black';
+        context.fillRect(this.game.width - this.powerGridWidth - 20, 70, this.powerGridWidth, 20);
+        context.fillStyle = '#e0cb2bff';
+        context.fillRect(this.game.width - this.powerGridWidth - 20, 70, this.game.powerMode, 20);
+        context.fillStyle = 'black';
+
         // game over message
         if (this.game.gameOver) {
             context.textAlign = 'center';
