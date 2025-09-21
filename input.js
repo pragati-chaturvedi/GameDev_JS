@@ -7,11 +7,10 @@ export class InputHandler {
                 e.key === "ArrowRight" ||
                 e.key === "ArrowUp" ||
                 e.key === "ArrowDown" ||
-                e.key === "Enter" ||
                 e.key === "Shift"
             ) && this.keys.indexOf(e.key) === -1) {
                 this.keys.push(e.key)
-            } else if (e.key === 'd') this.game.debug = !this.game.debug;
+            } else if (e.key === 'Enter' && this.game.gameOver) this.game.restartGame();
         });
 
         window.addEventListener("keyup", (e) => {
@@ -19,12 +18,19 @@ export class InputHandler {
                 e.key === "ArrowRight" ||
                 e.key === "ArrowUp" ||
                 e.key === "ArrowDown" ||
-                e.key === "Enter" ||
                 e.key === "Shift"
             ) {
                 this.keys.splice(this.keys.indexOf(e.key), 1);
             }
         });
-
+        window.addEventListener('touchstart', (e) => {
+            console.log('start');
+        });
+        window.addEventListener('touchmove', (e) => {
+            console.log('move');
+        });
+        window.addEventListener('touchend', (e) => {
+            console.log('end');
+        });
     }
 }

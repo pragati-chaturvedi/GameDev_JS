@@ -25,6 +25,15 @@ export class Player {
         this.sound.src = 'assets/sound/enemy_hit.wav';
     }
 
+    reset() {
+        this.x = 0;
+        this.y = this.game.height - this.height - this.game.groundMargin;
+        this.speedX = 0;
+        this.speedY = 0;
+        this.frameX = 0;
+        this.frameY = 0;
+    }
+
     draw(context) {
         if (this.game.debug) context.strokeRect(this.x, this.y, this.width, this.height);
         // drawImage arguments - image, source_image_x, source_image_y, source_image_height, canvas_x, canvas_y, canvas_width, canvas_height
@@ -61,8 +70,6 @@ export class Player {
             this.frameTimer += deltaTime;
         }
         // power mode
-        console.log(this.currentState);
-        console.log(this.game.powerMode);
         if (this.game.powerMode > 0 && this.currentState === this.states[4]) this.game.powerMode -= 1;
         if (this.game.powerMode <= 0 && this.currentState === this.states[4]) {
             if (this.onGround()) this.setState(1, 1);

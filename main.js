@@ -32,7 +32,6 @@ window.addEventListener('load', function () {
             this.debug = false;
             this.score = 0;
             this.powerMode = 100;
-            this.powerResetTime = 5000;
             this.fontColor = 'black';
             this.time = 0;
             this.maxTime = 30000;
@@ -45,9 +44,29 @@ window.addEventListener('load', function () {
             this.sound.src = 'assets/sound/game_music.wav';
             this.sound.loop = true;
         }
-
+        restart() {
+            this.player.reset();
+            this.enemies = [];
+            this.particles = [];
+            this.collisions = [];
+            this.floatingMessages = [];
+            this.enemyTimer = 0;
+            this.enemyInterval = 1000;
+            this.debug = false;
+            this.score = 0;
+            this.powerMode = 100;
+            this.fontColor = 'black';
+            this.time = 0;
+            this.gameOver = false;
+            this.lives = 3;
+            this.player.currentState = this.player.states[0];
+            this.player.currentState.enter();
+        }
+        restartGame() {
+            this.restart();
+            animate(0);
+        }
         draw(context) {
-            this.sound.play();
             this.background.draw(context);
             this.player.draw(context);
             this.enemies.forEach(enemy => {
@@ -66,6 +85,8 @@ window.addEventListener('load', function () {
         }
 
         update(deltaTime) {
+            this.sound.play().catch(() => { });
+
             // Time based game over logic
             this.time += deltaTime;
             if (this.time > this.maxTime) this.gameOver = true;

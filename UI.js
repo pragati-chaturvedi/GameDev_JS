@@ -9,6 +9,7 @@ export class UI {
         this.powerGridWidth = 100;
     }
 
+
     draw(context) {
         context.save();
         // shadow effect on text
@@ -51,7 +52,7 @@ export class UI {
                 // Loose condition message
                 context.fillText('Love at first bite?', this.game.width * 0.5, this.game.height * 0.5 - 20);
                 context.font = this.fontSize * 0.7 + 'px ' + this.fontFamily;
-                context.fillText('Nope. Better luck next time!', this.game.width * 0.5, this.game.height * 0.5 + 20);
+                context.fillText("Nope. Better luck next time! Press 'Enter' to replay", this.game.width * 0.5, this.game.height * 0.5 + 20);
             }
 
         }
