@@ -41,17 +41,22 @@ export class UI {
         // ===== How to play overlay BEFORE game starts =====
         if (!this.game.gameStarted && !this.game.gameOver) {
             context.textAlign = 'center';
+            context.shadowColor = '#646464ff';
+            context.fillStyle = 'white';
             context.font = this.fontSize * 2 + 'px ' + this.fontFamily;
             context.fillText('How to play', this.game.width * 0.5, this.game.height * 0.25);
             context.font = this.fontSize * 0.7 + 'px ' + this.fontFamily;
+            context.fillStyle = '#dc6300ff';
+            context.shadowColor = '#646464ff';
             context.fillText('⬅ ➡ : Move', this.game.width * 0.5, this.game.height * 0.25 + 30);
             context.fillText('⬆ : Jump', this.game.width * 0.5, this.game.height * 0.25 + 60);
             context.fillText('⬇ : Sit (ground) / Dive (air)', this.game.width * 0.5, this.game.height * 0.25 + 90);
             context.fillText('Shift (hold): Roll / Power Mode', this.game.width * 0.5, this.game.height * 0.25 + 120);
-            context.fillText('Collect points by hitting enemies while rolling/diving.', this.game.width * 0.5, this.game.height * 0.25 + 150);
+            context.fillText('Collect points by hitting enemies while rolling/diving', this.game.width * 0.5, this.game.height * 0.25 + 150);
             context.fillText('Avoid hits or you lose lives.', this.game.width * 0.5, this.game.height * 0.25 + 180);
             context.fillText("Try to score your best in 30 seconds !", this.game.width * 0.5, this.game.height * 0.25 + 210);
             context.fillText("Press any key or Touch screen to start", this.game.width * 0.5, this.game.height * 0.25 + 240);
+            context.fillStyle = 'black';
         }
 
         // game over message
@@ -63,13 +68,13 @@ export class UI {
                 context.fillText('Boo-yah', this.game.width * 0.5, this.game.height * 0.5 - 20);
                 context.font = this.fontSize * 0.7 + 'px ' + this.fontFamily;
                 context.fillText('What are the creatures of the night afraid of? YOU!!!', this.game.width * 0.5, this.game.height * 0.5 + 20);
+                context.fillText('To play again press Enter', this.game.width * 0.5, this.game.height * 0.5 + 50);
             } else {
                 // Loose condition message
                 context.fillText('Love at first bite?', this.game.width * 0.5, this.game.height * 0.5 - 20);
                 context.font = this.fontSize * 0.7 + 'px ' + this.fontFamily;
                 context.fillText("Nope. Better luck next time! Press 'Enter' to replay", this.game.width * 0.5, this.game.height * 0.5 + 20);
             }
-
         }
         context.restore();
     }

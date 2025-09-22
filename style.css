@@ -4,28 +4,6 @@
     box-sizing: border-box;
 }
 
-h1 {
-    font-family: Creepster;
-    font-size: 40px;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.instructions {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 15px;
-    font-family: Creepster;
-    text-align: left;
-    z-index: 1;
-}
-
-p {
-    text-align: center;
-}
-
 #canvas {
     border: 5px solid black;
     position: absolute;
@@ -49,9 +27,5 @@ p {
 #fire,
 #collision,
 #lives {
-    display: none;
-}
-
-.hidden {
     display: none;
 }
