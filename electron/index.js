@@ -21,7 +21,7 @@ function createWindow() {
         win.webContents.insertCSS(`:root{ --titlebar-height: ${TITLEBAR_HEIGHT}px; }`);
     });
 
-    win.loadFile('src/index.html');
+    win.loadFile('docs/index.html');
 }
 
 app.whenReady().then(() => {
