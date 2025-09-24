@@ -1,8 +1,8 @@
-import { Player } from "./player.js";
-import { InputHandler } from "./input.js";
-import { Background } from "./background.js";
-import { FlyingEnemy, GroundEnemy, ClimbingEnemy } from "./enemy.js";
-import { UI } from './UI.js';
+import { Player } from "./game_modules/player.js";
+import { InputHandler } from "./game_modules/input.js";
+import { Background } from "./game_modules/background.js";
+import { FlyingEnemy, GroundEnemy, ClimbingEnemy } from "./game_modules/enemy.js";
+import { UI } from './game_modules/UI.js';
 
 
 window.addEventListener('load', function () {

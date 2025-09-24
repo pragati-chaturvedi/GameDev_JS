@@ -1,0 +1,48 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.titlebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--titlebar-height, 30px);
+    background: rgb(5, 5, 4);
+    color: rgb(193, 193, 193);
+    font-family: Creepster;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    user-select: none;
+    -webkit-app-region: drag;
+}
+
+#canvas {
+    position: absolute;
+    top: var(--titlebar-height, 60px);
+    left: 0;
+    width: 100%;
+    height: calc(100% - var(--titlebar-height, 60px));
+    border: 5px solid black;
+    display: block;
+    font-family: Creepster;
+}
+
+#player,
+#layer1,
+#layer2,
+#layer3,
+#layer4,
+#layer5,
+#enemy_fly,
+#enemy_plant,
+#enemy_spider_big,
+#fire,
+#collision,
+#lives {
+    display: none;
+}

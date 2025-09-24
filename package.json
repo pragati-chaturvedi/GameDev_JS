@@ -1,0 +1,23 @@
+{
+  "name": "hop-n-dash",
+  "version": "1.0.0",
+  "description": "Runner Game built with JavaScript and Canvas",
+  "homepage": "https://github.com/pragati-chaturvedi/GameDev_JS#readme",
+  "bugs": {
+    "url": "https://github.com/pragati-chaturvedi/GameDev_JS/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pragati-chaturvedi/GameDev_JS.git"
+  },
+  "license": "ISC",
+  "author": "Pragati Chaturvedi",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^38.1.2"
+  }
+}
