@@ -1,3 +1,4 @@
+const path = require('path');
 const { app, BrowserWindow } = require('electron');
 
 const TITLEBAR_HEIGHT = 30;
@@ -6,6 +7,7 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 835,
         height: 530,
+        icon: './images/icon.png',
         titleBarStyle: 'hidden',
         // for Windows/Linux to enable the control buttons
         ...(process.platform !== 'darwin' ? { titleBarOverlay: true } : {}),
@@ -21,7 +23,7 @@ function createWindow() {
         win.webContents.insertCSS(`:root{ --titlebar-height: ${TITLEBAR_HEIGHT}px; }`);
     });
 
-    win.loadFile('docs/index.html');
+    win.loadFile(path.join(__dirname, '..', 'docs', 'index.html'));
 }
 
 app.whenReady().then(() => {

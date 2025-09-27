@@ -44,6 +44,7 @@ window.addEventListener('load', function () {
             this.sound.src = 'assets/sound/game_music.wav';
             this.sound.loop = true;
             this.gameStarted = false;
+            this.gameFrame = 0;
         }
 
         restart() {
