@@ -1,4 +1,4 @@
-# 🐶 Hop ’n Dash v1.0.0
+# 🐶 Hop ’n Dash
 
 A runner game where you control a playful dog that must roll into all kinds of enemies to score points and avoid collisions to stay alive. 
 
