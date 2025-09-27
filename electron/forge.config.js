@@ -5,25 +5,25 @@ const { FuseV1Options, FuseVersion } = require('@electron/fuses');
 module.exports = {
   packagerConfig: {
     asar: true,
-    icon: "./images/icon",
+    icon: path.resolve(__dirname, 'images', 'icon'),
     extraResource: [
       path.resolve(__dirname, '..', 'docs')
     ],
     executableName: 'HopNDash',
-    name: 'Hop ’n Dash'
+    name: 'Hop-n-Dash'
   },
   rebuildConfig: {},
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
       config: {
-        setupIcon: './images/icon.ico'
+        setupIcon: path.resolve(__dirname, 'images', 'icon.ico'),
       },
     },
     {
       name: '@electron-forge/maker-dmg',
       config: {
-        icon: './images/icon.icns'
+        icon: path.resolve(__dirname, 'images', 'icon.icns'),
       }
     },
     {
@@ -34,7 +34,7 @@ module.exports = {
       name: '@electron-forge/maker-deb',
       config: {
         options: {
-          icon: './images/icon.png'
+          icon: path.resolve(__dirname, 'images', 'icon.png'),
         }
       },
     },
