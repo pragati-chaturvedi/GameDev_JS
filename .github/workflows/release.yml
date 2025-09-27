@@ -12,7 +12,7 @@ jobs:
   build:
     strategy:
       matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
+        os: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     defaults:
       run:
@@ -50,6 +50,3 @@ jobs:
             electron/out/make/**/*.exe
             electron/out/make/**/*.dmg
             electron/out/make/**/*.zip
-            electron/out/make/**/*.AppImage
-            electron/out/make/**/*.deb
-            electron/out/make/**/*.rpm
