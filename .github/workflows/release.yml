@@ -1,0 +1,52 @@
+name: Build desktop installers
+
+on:
+  push:
+    tags:
+      - 'v*'  # e.g., v1.0.0
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: electron
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: |
+            electron/package-lock.json
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Make installers
+        run: npm run make
+
+      - name: Upload artifacts (CI view)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ runner.os }}-artifacts
+          path: electron/out/make/**
+
+      - name: Upload to GitHub Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            electron/out/make/**/*.exe
+            electron/out/make/**/*.dmg
+            electron/out/make/**/*.AppImage
+            electron/out/make/**/*.deb
+            electron/out/make/**/*.rpm
