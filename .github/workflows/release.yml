@@ -2,9 +2,11 @@ name: Build desktop installers
 
 on:
   push:
-    tags:
-      - 'v*'  # e.g., v1.0.0
+    tags: ['v*']
   workflow_dispatch: {}
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -47,6 +49,7 @@ jobs:
           files: |
             electron/out/make/**/*.exe
             electron/out/make/**/*.dmg
+            electron/out/make/**/*.zip
             electron/out/make/**/*.AppImage
             electron/out/make/**/*.deb
             electron/out/make/**/*.rpm
