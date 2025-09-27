@@ -21,6 +21,12 @@ module.exports = {
       },
     },
     {
+      name: '@electron-forge/maker-dmg',
+      config: {
+        icon: './images/icon.icns'
+      }
+    },
+    {
       name: '@electron-forge/maker-zip',
       platforms: ['darwin'],
     },
